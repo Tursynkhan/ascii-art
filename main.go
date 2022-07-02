@@ -34,7 +34,14 @@ func Read()(map[int][]string,bool){
 			symbols[key]=buf
 		}
 	}
-	fmt.Println(symbols)
+	i := 32
+	for i < 127 {
+		fmt.Println(i)
+		for _, elem := range symbols[i] {
+			fmt.Printf("%s$\n", elem)
+		}
+		i++
+	}
 	return symbols,false
 }
 
