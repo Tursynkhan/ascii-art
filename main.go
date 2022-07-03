@@ -4,20 +4,22 @@ import (
 	"bufio"
 	"os"
 	"fmt"
+	"log"
 )
 func main(){
-	Read()
+	symbols:=Read()
+	Print(symbols)
 }
 
-func Read()(map[int][]string,bool){
-	symbols:= map[int][]string{}
+func Read()(map[int][]string){
+	symbols:=make(map[int][]string)
 	var buf []string
 	counter:=0
 	key:=31
 
 	file,err:=os.Open("standard.txt")
 	if err!=nil{
-		return symbols,true
+		log.Fatal(err)
 	}
 	scanner:=bufio.NewScanner(file)
 	for scanner.Scan(){
@@ -34,25 +36,18 @@ func Read()(map[int][]string,bool){
 			symbols[key]=buf
 		}
 	}
-	i := 32
-	for i < 127 {
-		fmt.Println(i)
-		for _, elem := range symbols[i] {
-			fmt.Printf("%s$\n", elem)
-		}
-		i++
-	}
-	return symbols,false
+	return symbols
 }
+func Print(symbols map[int][]string){
+	args:=os.Args[1:]
+	runeWord := []rune(args[0])
+	res:=""
 
-// func PrintArt(buffer []string)[]string{
-// 	if buffer[0]!=""{
-// 		for i,let:=range buffer{
-// 			fmt.Printf("%s\n", let)
-// 			buffer[i]=""
-// 		}
-// 		return buffer
-// 	}
-// 	fmt.Println()
-// 	return buffer
-// }
+	for i:=1;i<8;i++{
+			for _,w:=range runeWord{
+			res+=string(symbols[int(w)][i])
+		}
+		res+="\n"
+	}	
+	fmt.Println(res[:len(res)-1])
+}
