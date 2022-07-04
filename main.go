@@ -7,8 +7,18 @@ import (
 	"log"
 )
 func main(){
+	if len(os.Args)!=2{
+		fmt.Println("Not correct number of arguments")
+		return
+	}
+	args := []rune(os.Args[1])
+	err:=Isvalid(args)
+	if err{
+		return
+	}
 	symbols:=Read()
-	Print(symbols)
+	PrintArt(args,symbols)
+	Isvalid(args)
 }
 
 func Read()(map[int][]string){
@@ -38,16 +48,24 @@ func Read()(map[int][]string){
 	}
 	return symbols
 }
-func Print(symbols map[int][]string){
-	args:=os.Args[1:]
-	runeWord := []rune(args[0])
-	res:=""
-
-	for i:=1;i<8;i++{
-			for _,w:=range runeWord{
-			res+=string(symbols[int(w)][i])
+func PrintArt(args []rune, symbols map[int][]string){
+	output:= make([]string,8)
+	for  k:=0;k<len(args);k++{
+		for i,w:=range symbols[int(args[k])]{
+			output[i]+=w
 		}
-		res+="\n"
-	}	
-	fmt.Println(res[:len(res)-1])
+	}
+	for _,r:=range output{
+		fmt.Println(r)
+	}
+}
+
+func Isvalid(args []rune)bool{
+	for _,r:=range args{
+		if (r<32 || r>127){
+			fmt.Println("Please, input onli ascii character!")
+			return true
+		}
+	}
+	return false
 }
