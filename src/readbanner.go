@@ -7,13 +7,13 @@ import (
 	"os"
 )
 
-func ReadBanner() map[int][]string {
+func ReadBanner(banners string) map[int][]string {
 	symbols := make(map[int][]string)
 	var buf []string
 	counter := 0
 	key := 31
 
-	file, err := os.Open("standard.txt")
+	file, err := os.Open(banners)
 	if err != nil {
 		log.Fatal(err)
 	}
