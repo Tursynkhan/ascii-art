@@ -3,7 +3,6 @@ package src
 import (
 	"bufio"
 	"fmt"
-	"log"
 	"os"
 )
 
@@ -15,7 +14,7 @@ func ReadBanner(banners string) map[int][]string {
 
 	file, err := os.Open(banners)
 	if err != nil {
-		log.Fatal(err)
+		return symbols
 	}
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
