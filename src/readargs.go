@@ -2,6 +2,7 @@ package src
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"os/exec"
 	"strconv"
@@ -11,9 +12,15 @@ import (
 func ReadArgs(args []rune, symbols map[int][]string) {
 	cmd := exec.Command("stty", "size")
 	cmd.Stdin = os.Stdin
-	out, _ := cmd.Output()
+	out, err := cmd.Output()
+	if err != nil {
+		log.Fatal(err)
+	}
 	size := strings.Split(string(out), " ")
-	width, _ := strconv.Atoi(size[1][:len(size[1])-1])
+	width, err := strconv.Atoi(size[1][:len(size[1])-1])
+	if err != nil {
+		log.Fatal(err)
+	}
 	counter := 0
 
 	output := make([]string, 8)
