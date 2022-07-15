@@ -4,12 +4,22 @@ import (
 	"bufio"
 	"crypto/md5"
 	"encoding/hex"
+	"errors"
 	"fmt"
 	"io"
 	"os"
 )
 
 func ReadBanner() (map[int][]string, error) {
+	if len(os.Args) != 3 {
+		errors.New("The arguments should be : go run . [STRING] [BANNER]")
+		return map[int][]string{}, nil
+	}
+
+	if os.Args[2] != "standard" || os.Args[2] != "shadow" || os.Args[2] != "thinkertoy" {
+		errors.New("[BANNER] should be : standard, shadow, thinkertoy")
+		return map[int][]string{}, nil
+	}
 	banners := os.Args[2]
 	pathOfBanners := "banners/" + banners + ".txt"
 

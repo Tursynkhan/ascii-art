@@ -58,15 +58,18 @@ func ReadArgs(args []rune, symbols map[int][]string) {
 	}
 }
 
-func IsvalidArgs() {
-	if len(os.Args) != 3 {
-		fmt.Println("Not correct number of arguments")
-		fmt.Println("The arguments should be : go run . [STRING] [BANNER]")
-		return
-	}
+// func IsvalidArgs() error {
+// 	if len(os.Args) != 3 {
+// 		errors.New("The arguments should be : go run . [STRING] [BANNER]")
+// 		// fmt.Println("Not correct number of arguments")
+// 		// fmt.Println("The arguments should be : go run . [STRING] [BANNER]")
+// 		return nil
+// 	}
 
-	if os.Args[2] != "standard" && os.Args[2] != "shadow" && os.Args[2] != "thinkertoy" {
-		fmt.Print("[BANNER] should be : standard, shadow, thinkertoy")
-		return
-	}
-}
+// 	if os.Args[2] != "standard" || os.Args[2] != "shadow" || os.Args[2] != "thinkertoy" {
+// 		// fmt.Print("[BANNER] should be : standard, shadow, thinkertoy")
+// 		errors.New("[BANNER] should be : standard, shadow, thinkertoy")
+// 		return nil
+// 	}
+// 	return nil
+// }

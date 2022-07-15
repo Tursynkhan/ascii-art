@@ -7,16 +7,15 @@ import (
 )
 
 func main() {
-	src.IsvalidArgs()
+	// src.IsvalidArgs()
 	args := []rune(os.Args[1])
 	err := src.Isvalid(args)
 	if err {
-		return
+		log.Println(err)
 	}
 	symbols, err1 := src.ReadBanner()
 	if err1 != nil {
 		log.Println(err1)
-		return
 	}
 	src.ReadArgs(args, symbols)
 }
