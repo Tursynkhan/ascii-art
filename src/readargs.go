@@ -1,6 +1,7 @@
 package src
 
 import (
+	"errors"
 	"fmt"
 	"log"
 	"os"
@@ -58,18 +59,15 @@ func ReadArgs(args []rune, symbols map[int][]string) {
 	}
 }
 
-// func IsvalidArgs() error {
-// 	if len(os.Args) != 3 {
-// 		errors.New("The arguments should be : go run . [STRING] [BANNER]")
-// 		// fmt.Println("Not correct number of arguments")
-// 		// fmt.Println("The arguments should be : go run . [STRING] [BANNER]")
-// 		return nil
-// 	}
+func IsvalidArgs() error {
+	if len(os.Args) != 3 {
+		err := errors.New("the arguments should be : go run . [STRING] [BANNER]")
+		return err
+	}
 
-// 	if os.Args[2] != "standard" || os.Args[2] != "shadow" || os.Args[2] != "thinkertoy" {
-// 		// fmt.Print("[BANNER] should be : standard, shadow, thinkertoy")
-// 		errors.New("[BANNER] should be : standard, shadow, thinkertoy")
-// 		return nil
-// 	}
-// 	return nil
-// }
+	if os.Args[2] != "standard" && os.Args[2] != "shadow" && os.Args[2] != "thinkertoy" {
+		err := errors.New("[BANNER] should be : standard, shadow, thinkertoy")
+		return err
+	}
+	return nil
+}

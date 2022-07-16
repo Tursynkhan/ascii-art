@@ -4,39 +4,17 @@ import (
 	"bufio"
 	"crypto/md5"
 	"encoding/hex"
-	"errors"
 	"fmt"
 	"io"
 	"os"
 )
 
-func ReadBanner() (map[int][]string, error) {
-	if len(os.Args) != 3 {
-		errors.New("The arguments should be : go run . [STRING] [BANNER]")
-		return map[int][]string{}, nil
-	}
-
-	if os.Args[2] != "standard" || os.Args[2] != "shadow" || os.Args[2] != "thinkertoy" {
-		errors.New("[BANNER] should be : standard, shadow, thinkertoy")
-		return map[int][]string{}, nil
-	}
-	banners := os.Args[2]
-	pathOfBanners := "banners/" + banners + ".txt"
-
+func ReadBanner(banners string, pathOfBanners string) (map[int][]string, error) {
 	symbols := make(map[int][]string)
 	var buf []string
 	counter := 0
 	key := 31
 
-	hashesOfBanners := map[string]string{
-		"shadow":     "a49d5fcb0d5c59b2e77674aa3ab8bbb1",
-		"standard":   "a51f800619146db0c42d26db3114c99f",
-		"thinkertoy": "8efd138877a4b281312f6dd1cbe84add",
-	}
-
-	if hashesOfBanners[banners] != Md5sum(pathOfBanners) {
-		return map[int][]string{}, fmt.Errorf("you have changed a file")
-	}
 	file, err := os.Open(pathOfBanners)
 	if err != nil {
 		return map[int][]string{}, nil
@@ -68,6 +46,19 @@ func Isvalid(args []rune) bool {
 		}
 	}
 	return false
+}
+
+func HashValid(banners, pathOfBanners string) error {
+	hashesOfBanners := map[string]string{
+		"shadow":     "a49d5fcb0d5c59b2e77674aa3ab8bbb1",
+		"standard":   "a51f800619146db0c42d26db3114c99f",
+		"thinkertoy": "8efd138877a4b281312f6dd1cbe84add",
+	}
+
+	if hashesOfBanners[banners] != Md5sum(pathOfBanners) {
+		return fmt.Errorf("you have changed a file")
+	}
+	return nil
 }
 
 func Md5sum(filepath string) string {

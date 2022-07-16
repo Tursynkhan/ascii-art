@@ -7,15 +7,28 @@ import (
 )
 
 func main() {
-	// src.IsvalidArgs()
-	args := []rune(os.Args[1])
-	err := src.Isvalid(args)
-	if err {
+	banners := os.Args[2]
+	pathOfBanners := "banners/" + banners + ".txt"
+	err := src.IsvalidArgs()
+	if err != nil {
 		log.Println(err)
+		return
 	}
-	symbols, err1 := src.ReadBanner()
-	if err1 != nil {
+	err3 := src.HashValid(banners, pathOfBanners)
+	if err3 != nil {
+		log.Println(err3)
+		return
+	}
+	args := []rune(os.Args[1])
+	err1 := src.Isvalid(args)
+	if err1 {
+		log.Println(err)
+		return
+	}
+	symbols, err2 := src.ReadBanner(banners, pathOfBanners)
+	if err2 != nil {
 		log.Println(err1)
+		return
 	}
 	src.ReadArgs(args, symbols)
 }
