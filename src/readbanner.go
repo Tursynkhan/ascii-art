@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"crypto/md5"
 	"encoding/hex"
+	"errors"
 	"fmt"
 	"io"
 	"os"
@@ -17,7 +18,7 @@ func ReadBanner(banners string, pathOfBanners string) (map[int][]string, error) 
 
 	file, err := os.Open(pathOfBanners)
 	if err != nil {
-		return map[int][]string{}, nil
+		return nil, errors.New("can't open banner file")
 	}
 
 	scanner := bufio.NewScanner(file)
@@ -34,6 +35,9 @@ func ReadBanner(banners string, pathOfBanners string) (map[int][]string, error) 
 		if counter == 8 {
 			symbols[key] = buf
 		}
+	}
+	if len(symbols) != 95 {
+		return nil, errors.New("incorrect banner format")
 	}
 	return symbols, nil
 }

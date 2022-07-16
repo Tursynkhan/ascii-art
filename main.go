@@ -8,28 +8,44 @@ import (
 
 func main() {
 	input := os.Args
-	banners := os.Args[2]
-	pathOfBanners := "banners/" + banners + ".txt"
-	err := src.IsvalidArgs(input)
-	if err != nil {
-		log.Println(err)
-		return
+	switch len(input) {
+	case 2:
+		banners := "standard"
+		pathOfBanners := "banners/" + banners + ".txt"
+
+		symbols, err := src.ReadBanner(banners, pathOfBanners)
+		if err != nil {
+			log.Println(err)
+			return
+		}
+		args := []rune(os.Args[1])
+
+		if src.Isvalid(args) {
+			log.Println(err)
+			return
+		}
+
+		src.ReadArgs(args, symbols)
+	case 3:
+		banners := os.Args[2]
+		pathOfBanners := "banners/" + banners + ".txt"
+
+		symbols, err := src.ReadBanner(banners, pathOfBanners)
+		if err != nil {
+			log.Println(err)
+			return
+		}
+		args := []rune(os.Args[1])
+
+		if src.Isvalid(args) {
+			log.Println(err)
+			return
+		}
+
+		src.ReadArgs(args, symbols)
+	default:
+		if err := src.IsvalidArgs(input); err != nil {
+			log.Fatal(err)
+		}
 	}
-	err3 := src.HashValid(banners, pathOfBanners)
-	if err3 != nil {
-		log.Println(err3)
-		return
-	}
-	args := []rune(os.Args[1])
-	err1 := src.Isvalid(args)
-	if err1 {
-		log.Println(err)
-		return
-	}
-	symbols, err2 := src.ReadBanner(banners, pathOfBanners)
-	if err2 != nil {
-		log.Println(err1)
-		return
-	}
-	src.ReadArgs(args, symbols)
 }
