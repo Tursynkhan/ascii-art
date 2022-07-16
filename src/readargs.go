@@ -59,8 +59,8 @@ func ReadArgs(args []rune, symbols map[int][]string) {
 	}
 }
 
-func IsvalidArgs() error {
-	if len(os.Args) != 3 {
+func IsvalidArgs(s []string) error {
+	if len(s) != 3 {
 		err := errors.New("the arguments should be : go run . [STRING] [BANNER]")
 		return err
 	}

@@ -7,9 +7,10 @@ import (
 )
 
 func main() {
+	input := os.Args
 	banners := os.Args[2]
 	pathOfBanners := "banners/" + banners + ".txt"
-	err := src.IsvalidArgs()
+	err := src.IsvalidArgs(input)
 	if err != nil {
 		log.Println(err)
 		return
