@@ -32,9 +32,10 @@ $$@@$$$$$$$$``````````@@$$@@$$$$$$
 ### Usage
 
 ```console
+$
 Usage: go run . [STRING] [BANNER]
 EX: go run . something standard
-
+$
 student$ go run . "" | cat -e
 student$ go run . "\n" | cat -e
 $
@@ -66,7 +67,7 @@ student$ go run . "HeLlO" | cat -e
 |_|  |_|  \___| |______| |_|  \____/  $
                                       $
                                       $
-
+$
 student$ go run . "Hello\nThere" | cat -e
  _    _           _    _           $
 | |  | |         | |  | |          $
@@ -84,6 +85,7 @@ student$ go run . "Hello\nThere" | cat -e
    |_|    |_| |_|   \___|  |_|      \___| $
                                           $
                                           $
+$
 student$ go run . "Hello\n\nThere" | cat -e
  _    _           _    _           $
 | |  | |         | |  | |          $
