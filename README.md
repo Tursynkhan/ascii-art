@@ -102,7 +102,7 @@ $
    |_|    |_| |_|   \___|  |_|      \___| $
                                           $
                                           $
-                                          
+$                                          
 student$ go run . "hello" standard | cat -e
  _              _   _          $
 | |            | | | |         $
