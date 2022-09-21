@@ -32,10 +32,10 @@ $$@@$$$$$$$$``````````@@$$@@$$$$$$
 ### Usage
 
 ```console
-$
+
 Usage: go run . [STRING] [BANNER]
 EX: go run . something standard
-$
+
 student$ go run . "" | cat -e
 student$ go run . "\n" | cat -e
 $
