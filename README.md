@@ -32,10 +32,11 @@ $$@@$$$$$$$$``````````@@$$@@$$$$$$
 ### Usage
 
 ```console
-student$ go run . "" | cat -e
-student$ go run . "\n" | cat -e
 Usage: go run . [STRING] [BANNER]
 EX: go run . something standard
+
+student$ go run . "" | cat -e
+student$ go run . "\n" | cat -e
 $
 student$ go run . "Hello\n" | cat -e
  _    _          _   _          $
@@ -101,7 +102,6 @@ $
    |_|    |_| |_|   \___|  |_|      \___| $
                                           $
                                           $
-student$
 student$ go run . "hello" standard | cat -e
  _              _   _          $
 | |            | | | |         $
@@ -111,6 +111,7 @@ student$ go run . "hello" standard | cat -e
 |_| |_|  \___| |_| |_|  \___/  $
                                $
                                $
+$
 student$ go run . "Hello There!" shadow | cat -e
                                                                                          $
 _|    _|          _| _|                _|_|_|_|_| _|                                  _| $
@@ -120,9 +121,7 @@ _|    _| _|       _| _| _|    _|           _|     _|    _| _|       _|       _| 
 _|    _|   _|_|_| _| _|   _|_|             _|     _|    _|   _|_|_| _|         _|_|_| _| $
                                                                                          $
                                                                                          $
-
-
-
+$
 student$ go run . "Hello There!" thinkertoy | cat -e
                                                 $
 o  o     o o           o-O-o o                o $
